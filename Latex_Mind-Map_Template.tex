@@ -1,0 +1,73 @@
+% Mindmap Template
+\documentclass[ngerman,pdftex,12pt,a4paper]{scrreprt}
+
+\usepackage[utf8]{inputenc} 	% ermöglicht die direkte Eingabe von Umlauten
+\usepackage[T1]{fontenc} 		% Ausgabe aller zeichen in einer T1-Codierung (wichtig für die Ausgabe von Umlauten!)
+\usepackage[ngerman]{babel} 	% deutsche Trennungsregeln und Übersetzung der festcodierten Überschriften
+
+\usepackage{xcolor} 			% einfache Verwendung von Farben in nahezu allen Farbmodellen
+\usepackage{tikz}
+\usetikzlibrary{mindmap,fit,arrows,calc,positioning} % Für die Zeichnungen
+
+\begin{document}
+
+\chapter{Vorlage für Mind-Maps}
+
+\begin{figure}[h]
+\begin{tikzpicture}
+% http://tex.stackexchange.com/questions/46007/tikz-node-placement-and-arrow-drawing
+% http://tex.stackexchange.com/questions/121809/positioning-text-in-tikz-drawings
+% http://tex.stackexchange.com/questions/25681/tikz-what-affects-the-space-between-nodes-placed-with-below-of-syntax
+
+\tikzstyle{box} = [rectangle, draw, minimum width=10em, minimum height=5.5ex, draw=black]
+\tikzstyle{arrow} = [draw, latex-latex , thick]
+
+\node [box, fill=blue, minimum width=18em] (one) {Eins};
+\node [box, fill=blue, minimum width=18em, right=1.5 of one] (two) {zwei};
+\coordinate (middle1) at ($(one.south)!0.5!(two.south)$);
+
+\node [box, fill=green, below=1.5cm of middle1, minimum width=30em] (three) {Drei};
+\node [box, fill=green, below=1.5cm of three, minimum width=30em] (four) {vier};
+\coordinate [below=2cm of four] (middle2);
+
+\node [box, fill=yellow, left=1.5cm of middle2] (five) {Fünf};
+\node [box, fill=yellow, right=1.5cm of middle2] (six) {Sechs};
+
+\path [arrow]  %One <-> Three
+(one) 
+	edge [left] node[xshift=-1em, fill=none, pos=.5, text height=.2em] {Von 1 nach 3}
+(three);
+\path [arrow] %Two <-> Three
+(two) 
+	edge [right] node[xshift=1em, fill=none, pos=.5, text height=.2em] {Von 2 nach 3}
+(three);
+\path [arrow]  %Three <-> Four
+(three) 
+	edge node[fill=white, pos=.5, text height=.2em] {Von 3 nach 4}
+(four);
+
+\path [arrow]  %Four <-> Five
+(four) 
+	edge [left] node[fill=none, pos=.5, text height=.2em] {Von 4 nach 5}
+(five);
+\path [arrow]  %Four <-> Six
+(four) 
+	edge [right] node[fill=none, pos=.5, text height=.2em] {Von 4 nach 6}
+(six);
+\path [arrow]  %Five <-> Six
+(five) 
+	edge node[fill=none] {}
+(six);
+
+\node [box, xshift=-4cm, fill=none, below=1.5cm of five, minimum height=4ex, minimum width=0em, draw=none] (legende) {Legende:};
+\node [box, fill=blue, right=.3cm of legende, minimum height=4ex] (extSys) {Grün};
+\node [box, fill=green, right=.3cm of extSys, minimum height=4ex] (eBP) {Grün};
+\node [box, fill=yellow, right=.3cm of eBP, minimum height=4ex] (SysU) {Gelb};
+
+\end{tikzpicture}
+\caption{Zahlen}
+\label{fig:numbers} 
+\end{figure}
+
+
+\end{document}

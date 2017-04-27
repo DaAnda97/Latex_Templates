@@ -1,0 +1,26 @@
+% Pie Template
+\documentclass[ngerman,pdftex,12pt,a4paper]{scrreprt}
+
+\usepackage[utf8]{inputenc} 	% ermöglicht die direkte Eingabe von Umlauten
+\usepackage[T1]{fontenc} 		% Ausgabe aller zeichen in einer T1-Codierung (wichtig für die Ausgabe von Umlauten!)
+\usepackage[ngerman]{babel} 	% deutsche Trennungsregeln und Übersetzung der festcodierten Überschriften
+
+\usepackage{xcolor} 			% einfache Verwendung von Farben in nahezu allen Farbmodellen
+\usepackage{pgf-pie} %ftp://ftp.fu-berlin.de/tex/CTAN/graphics/pgf/contrib/pgf-pie/pgf-pie-manual.pdf
+
+\begin{document}
+
+\chapter{Vorlage für Kreisdiagramm}
+
+\begin{figure}[h]
+\centering
+\tikz{\pie [explode = {0, 0},
+  color = {red!40, green!40} ] {
+  61.4/ rot,
+  38.6/ grün}}
+\caption{Kuchendiagramm }
+\label{fig:passingOwasp} 
+\end{figure}
+
+
+\end{document}
