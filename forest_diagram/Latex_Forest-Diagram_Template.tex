@@ -1,0 +1,34 @@
+\documentclass[ngerman,pdftex,12pt,a4paper]{scrreprt}
+
+\usepackage[utf8]{inputenc} 	% ermöglicht die direkte Eingabe von Umlauten
+\usepackage[T1]{fontenc} 		% Ausgabe aller zeichen in einer T1-Codierung (wichtig für die Ausgabe von Umlauten!)
+\usepackage[ngerman]{babel} 	% deutsche Trennungsregeln und Übersetzung der festcodierten Überschriften
+
+\usepackage{forest}
+
+\begin{document}
+
+\chapter{Vorlage für Baumdiagramme}
+
+Am Beispiel der Bayer Holding:
+
+\begin{figure}[h]
+\begin{forest}
+  for tree={l+=1cm} % increase level distance
+  [\large Bayer Holding
+    [Teilkonzerne
+    	[\scriptsize Bayer HealthCare]
+    	[\scriptsize Bayer CropScience]
+    	[\scriptsize Covestro]
+    ]
+    [Servicegesellschaften
+    	[\scriptsize Currenta]
+    	[\scriptsize Bayer Technology Services]
+    	[\scriptsize Bayer Business Services]
+    ]
+  ]
+\end{forest}
+\caption{Beyer}
+\end{figure}
+
+\end{document}
