@@ -1,72 +1,72 @@
-% Mindmap Template
 \documentclass[ngerman,pdftex,12pt,a4paper]{scrreprt}
 
+
+%----------------------------------- Einbindung verwendeter Pakete ------------------------------------
 \usepackage[utf8]{inputenc} 	% ermöglicht die direkte Eingabe von Umlauten
 \usepackage[T1]{fontenc} 		% Ausgabe aller zeichen in einer T1-Codierung (wichtig für die Ausgabe von Umlauten!)
 \usepackage[ngerman]{babel} 	% deutsche Trennungsregeln und Übersetzung der festcodierten Überschriften
 
-\usepackage{xcolor} 			% einfache Verwendung von Farben in nahezu allen Farbmodellen
 \usepackage{tikz}
-\usetikzlibrary{mindmap,fit,arrows,calc,positioning} % Für die Zeichnungen
+\usetikzlibrary{mindmap,fit,arrows,calc,positioning}
 
 \begin{document}
 
-\chapter{Vorlage für Mind-Maps}
+\chapter{Mind-Map Template}
 
-\begin{figure}[h]
-\begin{tikzpicture}
-% http://tex.stackexchange.com/questions/46007/tikz-node-placement-and-arrow-drawing
-% http://tex.stackexchange.com/questions/121809/positioning-text-in-tikz-drawings
-% http://tex.stackexchange.com/questions/25681/tikz-what-affects-the-space-between-nodes-placed-with-below-of-syntax
+Auf der nächsten Seite ist eine Mind-Map am Beispiel der REWE-Groub dargestellt.
 
-\tikzstyle{box} = [rectangle, draw, minimum width=10em, minimum height=5.5ex, draw=black]
-\tikzstyle{arrow} = [draw, latex-latex , thick]
+\begin{figure}[!h]
+\begin{tikzpicture}[mindmap, grow cyclic,
+	every node/.style=concept, concept color=red!50,
+	level 1/.append style={level distance=6.5cm, sibling angle=120}, 
+	level 2/.append style={level distance=3cm, sibling angle=32}, 
+	every annotation/.style={concept color=blue!20, text width={}, font=\small, align=left}]
 
-\node [box, fill=blue, minimum width=18em] (one) {Eins};
-\node [box, fill=blue, minimum width=18em, right=1.5 of one] (two) {zwei};
-\coordinate (middle1) at ($(one.south)!0.5!(two.south)$);
-
-\node [box, fill=green, below=1.5cm of middle1, minimum width=30em] (three) {Drei};
-\node [box, fill=green, below=1.5cm of three, minimum width=30em] (four) {vier};
-\coordinate [below=2cm of four] (middle2);
-
-\node [box, fill=yellow, left=1.5cm of middle2] (five) {Fünf};
-\node [box, fill=yellow, right=1.5cm of middle2] (six) {Sechs};
-
-\path [arrow]  %One <-> Three
-(one) 
-	edge [left] node[xshift=-1em, fill=none, pos=.5, text height=.2em] {Von 1 nach 3}
-(three);
-\path [arrow] %Two <-> Three
-(two) 
-	edge [right] node[xshift=1em, fill=none, pos=.5, text height=.2em] {Von 2 nach 3}
-(three);
-\path [arrow]  %Three <-> Four
-(three) 
-	edge node[fill=white, pos=.5, text height=.2em] {Von 3 nach 4}
-(four);
-
-\path [arrow]  %Four <-> Five
-(four) 
-	edge [left] node[fill=none, pos=.5, text height=.2em] {Von 4 nach 5}
-(five);
-\path [arrow]  %Four <-> Six
-(four) 
-	edge [right] node[fill=none, pos=.5, text height=.2em] {Von 4 nach 6}
-(six);
-\path [arrow]  %Five <-> Six
-(five) 
-	edge node[fill=none] {}
-(six);
-
-\node [box, xshift=-4cm, fill=none, below=1.5cm of five, minimum height=4ex, minimum width=0em, draw=none] (legende) {Legende:};
-\node [box, fill=blue, right=.3cm of legende, minimum height=4ex] (extSys) {Grün};
-\node [box, fill=green, right=.3cm of extSys, minimum height=4ex] (eBP) {Grün};
-\node [box, fill=yellow, right=.3cm of eBP, minimum height=4ex] (SysU) {Gelb};
-
+\node{\Large REWE Group}
+child[concept color=orange!70]{node{TOURIS- MUS}
+    child[concept color=orange!55]{node{FCM Travel}}
+    child[concept color=orange!55]{node{ITS}}
+    child[concept color=orange!55]{node{Travelix}}
+    child[concept color=orange!55]{node{Jahn Reisen}}
+    child[concept color=orange!55]{node{ADAC Reisen}}
+    child[concept color=orange!55]{node{Meier's Weltreisen}}
+    child[concept color=orange!55]{node (der) {DER}}
+    child[concept color=orange!55]{node{Club Calimera}}
+    child[concept color=orange!55]{node{PrimaSol}}
+    child[concept color=orange!55]{node{Iti}}
+}
+child[concept color=gray!70, level 2/.append style={sibling angle=60}]{node{Österreich}
+	child[concept color=gray!40]{node{AGM}}
+    child[concept color=gray!40]{node{Bipa}}
+    child[concept color=gray!40]{node{Merkur Markt}}
+    child[concept color=gray!40]{node{ADEG}}
+    child[concept color=gray!40]{node (billa) {Billa}}
+}
+child[concept color=gray!70,  level 2/.append style={sibling angle=55}]{node{Deutschland}
+	child[concept color=gray!40]{node{Rewe}}
+	child[concept color=gray!55, level distance=5cm]{node{Sonstige Deutschland}
+    	child[concept color=gray!40]{node{Kölner Weinkeller}}
+    	child[concept color=gray!40]{node{Karstadt Lebensmittel}}
+    	child[concept color=gray!40]{node{Wilhelm Brandenburg}}
+    	child[concept color=gray!40]{node{Glcoken Bäckerei}}
+    	child[concept color=gray!40]{node{Oh Angie}}
+    	child[concept color=gray!40]{node{ZooRoyal}}
+    	child[concept color=gray!40]{node{Wein- freunde}}
+    	child[concept color=gray!40]{node{Garten- liebe}}
+    	child[concept color=gray!40]{node{home24}}
+	}
+	child[concept color=gray!40]{node{Penny}}
+	child[concept color=gray!40]{node{Temma}}
+	child[concept color=gray!40]{node{Nahkauf}}
+	child[concept color=gray!40, level 3/.append style={sibling angle=70}]{node{Toom}
+    	child[concept color=gray!30]{node{Getränke- markt}}
+    	child[concept color=gray!30]{node{Baumarkt}}
+	}	
+};
+\node [annotation, right] at (der.south) {$\bullet$ DER Touristic \\ $\bullet$ DER Part \\ $\bullet$ DER Tour};
+\node [annotation, above] at (billa.north west) {auch in: \\ $\bullet$ Tschechischen Republik \\ $\bullet$ Ungern \\ $\bullet$ Italien \\ $\bullet$ Rumänien};
 \end{tikzpicture}
-\caption{Zahlen}
-\label{fig:numbers} 
+\caption{Vertriebslinien der REWE Group}
 \end{figure}
 
 
